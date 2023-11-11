@@ -42,9 +42,9 @@ const Hamburger: NextPage<HamburgerType> = ({ onClose }) => {
       className="bg-white w-[400px] overflow-hidden flex flex-col items-center justify-start p-[30px] box-border gap-[10px] [&.animate]:animate-[0.25s_ease_0s_1_normal_forwards_slide-in-right] opacity-[0] h-full max-w-[90%]"
       data-animate-on-scroll
     >
-      <LinkHamburgerNonBottomCont linkText="Link / Hamburger / Non-Bottom" />
-      <LinkHamburgerNonBottomCont linkText="Link / Hamburger / Non-Bottom" />
-      <LinkHamburgerBottomContaine linkText="Link / Hamburger / Bottom" />
+      <LinkHamburgerNonBottomCont linkText="Login/Sign up" linkPage="login"/>
+      <LinkHamburgerNonBottomCont linkText="Browse" linkPage="browse-lots"/>
+      <LinkHamburgerBottomContaine linkText="Reserve" linkPage="confirm-reservation"/>
     </div>
   );
 };
