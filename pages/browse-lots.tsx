@@ -20,10 +20,6 @@ const BrowseLots: NextPage = () => {
     setMenuHamburgerOpen(false);
   }, []);
 
-  const onBrowseClick = useCallback(() => {
-    router.push("/browse-zip");
-  }, [router]);
-
   const onContinueClick = useCallback(() => {
     router.push("/browse-dates");
   }, [router]); 
