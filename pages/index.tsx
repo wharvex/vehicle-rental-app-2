@@ -1,19 +1,31 @@
 import type { NextPage } from "next";
-import { useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useRouter } from "next/router";
+import MenuHamburger from "../components/hamburger"
+import PortalDrawer from "../components/portal-drawer";
 
 const Home: NextPage = () => {
   const router = useRouter();
+  const [isMenuHamburgerOpen, setMenuHamburgerOpen] = useState(false);
 
   const onClientLogoComponentClick = useCallback(() => {
-    router.push("/home");
+    router.push("/index");
   }, [router]);
+
+  const openProfileHamburger = useCallback(() => {
+    setMenuHamburgerOpen(true);
+  }, []);
+
+  const closeMenuHamburger = useCallback(() => {
+    setMenuHamburgerOpen(false);
+  }, []);
 
   const onLinkRegularMediumContainerClick = useCallback(() => {
     router.push("/confirm-reservation");
   }, [router]);
 
   return (
+    <>
     <div className="relative bg-white w-full overflow-hidden flex flex-col items-center justify-start py-2.5 px-36 box-border gap-[10px]">
       <header className="self-stretch box-border h-[193px] overflow-hidden shrink-0 flex flex-row items-center justify-between py-5 px-2.5 border-b-[2px] border-solid border-black">
         <a
@@ -26,11 +38,16 @@ const Home: NextPage = () => {
             src="/client-logo@2x.png"
           />
         </a>
-        <img
-          className="relative w-[130px] h-[130px] overflow-hidden shrink-0"
-          alt=""
-          src="/icon--ionicons--sharp--menusharp1.svg"
-        />
+        <div
+            className="flex flex-row items-center justify-center cursor-pointer"
+            onClick={openProfileHamburger}
+          >
+          <img
+            className="relative w-[130px] h-[130px] overflow-hidden shrink-0"
+            alt=""
+            src="/icon--ionicons--sharp--menusharp1.svg"
+          />
+        </div>
       </header>
       <main className="self-stretch flex flex-col items-center justify-start gap-[10px] text-center text-45xl text-black font-reg-medium">
         <div className="flex flex-row items-center justify-start">
@@ -78,6 +95,16 @@ const Home: NextPage = () => {
         </button>
       </footer>
     </div>
+      {isMenuHamburgerOpen && (
+        <PortalDrawer
+          overlayColor="rgba(113, 113, 113, 0.3)"
+          placement="Right"
+          onOutsideClick={closeMenuHamburger}
+        >
+          <MenuHamburger onClose={closeMenuHamburger} />
+        </PortalDrawer>
+      )}
+    </>
   );
 };
 
